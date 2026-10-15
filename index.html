@@ -1,5 +1,5 @@
 <!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Camera &amp; Object Motion Transfer with a Frozen Video Model</title><style>
+<title>Recover, Retarget, Guide: A Training-Free Framework for Object and Camera Motion Transfer</title><style>
 :root{--fg:#1d1d1f;--mut:#6e6e73;--line:#e5e5ea;--acc:#b5651d;--bg:#fff}
 *{box-sizing:border-box}body{margin:0;font:16px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg)}
 main{max-width:1180px;margin:0 auto;padding:28px 20px 60px}h1{font-size:30px;line-height:1.2;margin:0 0 6px}h2{font-size:22px;margin:40px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
@@ -13,59 +13,59 @@ th{color:var(--mut);font-weight:600}caption,.cap{caption-side:bottom;text-align:
 .lim{max-width:900px}.foot{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--line);padding-top:10px}
 @media(max-width:700px){.grid{grid-template-columns:1fr 1fr !important}}
 </style></head><body><main>
-<h1>Camera &amp; Object Motion Transfer with a Frozen Video Model</h1><p class='sub'>Honours thesis, Australian National University, 2026</p><p class='auth'>John Zeng — supervisor: Dr Jing Zhang</p>
+<h1>Recover, Retarget, Guide: A Training-Free Framework for Object and Camera Motion Transfer</h1><p class='sub'>Honours thesis, Australian National University, 2026</p><p class='auth'>John Zeng — supervisor: Dr Jing Zhang</p>
 <p class='links'><a href='https://github.com/jnheinrich451-eng/mixture-motion-transfer'>Code</a></p>
 <p class='sum'>Given one reference video and one text prompt, the pipeline recovers the reference&#x27;s camera and subject motion in 3-D, synthesises the target&#x27;s first frame from the reference&#x27;s layout and the prompt, and replays the motion in that scene by correcting a frozen video model (Wan 2.1 I2V) at sixteen of its fifty sampling steps. No weights are trained. Results below are the ones reported in the thesis.</p>
 <h2>Method</h2>
 <figure><img src='figures/pipeline_flowchart.png' alt='pipeline'></figure>
 <h2>Results</h2>
-<p class='cap'>Each row is one reference clip and one target; seed 0; videos loop. The reference is shown over the same frames the generated videos cover.</p>
-<div class='pair'><h3>River walk → man on a rocky riverbank</h3><p class='meta'>prompt: “a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
+<p class='cap'>Each row is one reference clip and one target. Seed 0 where available, otherwise the seed named on the tile. Videos loop; the reference shows the first 21 frames of the window all methods were scored on.</p>
+<div class='pair'><h3>a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot</h3><p class='meta'>prompt: “a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
 <div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
-<div class='cell'><video src='videos/000000000265.2.005_human_wan_a0_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
-<div class='cell'><video src='videos/000000000265.2.005_human_ours_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance) (seed 1)</p></div>
 </div></div>
-<div class='pair'><h3>River walk → red car on scrubland</h3><p class='meta'>prompt: “a red car driving, on open scrubland, side profile, moving right to left, medium shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
+<div class='pair'><h3>a red car driving, on open scrubland, side profile, moving right to left, medium shot</h3><p class='meta'>prompt: “a red car driving, on open scrubland, side profile, moving right to left, medium shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
 <div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
-<div class='cell'><video src='videos/000000000265.2.005_vehicle_wan_a0_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
-<div class='cell'><video src='videos/000000000265.2.005_vehicle_ours_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance) (seed 1)</p></div>
 </div></div>
-<div class='pair'><h3>Desert highway → red car</h3><p class='meta'></p>
+<div class='pair'><h3>a red car driving, on a desert highway, side profile, moving right to left, medium shot</h3><p class='meta'></p>
 <div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V) (seed 1)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance) (seed 1)</p></div>
+</div></div>
+<div class='pair'><h3>a red car driving, on a desert highway, front three-quarter view, approaching the camera, medium shot</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V) (seed 1)</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance) (seed 1)</p></div>
+</div></div>
+<div class='pair'><h3>a man in a grey jacket and dark trousers walking, in a misty pine forest, rear three-quarter view, moving away from the camera, medium-wide shot</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><video src='videos/000000000370.1.008_human_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000370.1.008_human_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000370.1.008_human_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
 <div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+<div class='cell'><video src='videos/000000000370.1.008_human_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
-<div class='pair'><h3>Desert highway, approaching → red car</h3><p class='meta'></p>
+<div class='pair'><h3>a red car driving, on a coastal cliff road, rear three-quarter view, moving away from the camera, medium-wide shot (flagged: camera failed the gate; no guided run)</h3><p class='meta'></p>
 <div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
-</div></div>
-<div class='pair'><h3>Pine forest → man walking away</h3><p class='meta'></p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
-</div></div>
-<div class='pair'><h3>Coastal cliff road → red car (flagged: camera failed the gate; no guided run)</h3><p class='meta'></p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
-<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><video src='videos/000000000035.1.003_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
+<div class='cell'><video src='videos/000000000035.1.003_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000035.1.003_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000035.1.003_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V) (seed 1)</p></div>
 <div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <h2>Measured</h2>
