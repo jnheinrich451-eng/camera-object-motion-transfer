@@ -1,0 +1,85 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Camera &amp; Object Motion Transfer with a Frozen Video Model</title><style>
+:root{--fg:#1d1d1f;--mut:#6e6e73;--line:#e5e5ea;--acc:#b5651d;--bg:#fff}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg)}
+main{max-width:1180px;margin:0 auto;padding:28px 20px 60px}h1{font-size:30px;line-height:1.2;margin:0 0 6px}h2{font-size:22px;margin:40px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.sub{color:var(--mut);margin:0 0 4px}.auth{margin:0 0 18px}.links a{display:inline-block;margin:0 10px 0 0;padding:6px 12px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:var(--fg)}
+p.sum{font-size:17px;max-width:900px}figure{margin:0}figure img{max-width:100%;border:1px solid var(--line);border-radius:8px}
+.pair{margin:22px 0 8px}.pair h3{font-size:16px;margin:0 0 4px}.pair .meta{color:var(--mut);font-size:13px;margin:0 0 8px}
+.grid{display:grid;gap:8px}.grid .cell{min-width:0}.grid video,.grid .na{width:100%;aspect-ratio:832/480;background:#f2f2f5;border-radius:6px;display:block}
+.grid .na{display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:13px}.grid .lab{font-size:13px;color:var(--mut);margin:4px 0 0;text-align:center}
+.flag{color:var(--acc);font-weight:600}table{border-collapse:collapse;font-size:14px;margin:8px 0}th,td{padding:6px 12px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}
+th{color:var(--mut);font-weight:600}caption,.cap{caption-side:bottom;text-align:left;color:var(--mut);font-size:13px;padding-top:6px}
+.lim{max-width:900px}.foot{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:700px){.grid{grid-template-columns:1fr 1fr !important}}
+</style></head><body><main>
+<h1>Camera &amp; Object Motion Transfer with a Frozen Video Model</h1><p class='sub'>Honours thesis, Australian National University, 2026</p><p class='auth'>John Zeng — supervisor: Dr Jing Zhang</p>
+<p class='links'><a href='https://github.com/jnheinrich451-eng/mixture-motion-transfer'>Code</a></p>
+<p class='sum'>Given one reference video and one text prompt, the pipeline recovers the reference&#x27;s camera and subject motion in 3-D, synthesises the target&#x27;s first frame from the reference&#x27;s layout and the prompt, and replays the motion in that scene by correcting a frozen video model (Wan 2.1 I2V) at sixteen of its fifty sampling steps. No weights are trained. Results below are the ones reported in the thesis.</p>
+<h2>Method</h2>
+<figure><img src='figures/pipeline_flowchart.png' alt='pipeline'></figure>
+<h2>Results</h2>
+<p class='cap'>Each row is one reference clip and one target; seed 0; videos loop. The reference is shown over the same frames the generated videos cover.</p>
+<div class='pair'><h3>River walk → man on a rocky riverbank</h3><p class='meta'>prompt: “a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_wan_a0_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_ours_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<div class='pair'><h3>River walk → red car on scrubland</h3><p class='meta'>prompt: “a red car driving, on open scrubland, side profile, moving right to left, medium shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_wan_a0_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_ours_s0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<div class='pair'><h3>Desert highway → red car</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<div class='pair'><h3>Desert highway, approaching → red car</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<div class='pair'><h3>Pine forest → man walking away</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<div class='pair'><h3>Coastal cliff road → red car (flagged: camera failed the gate; no guided run)</h3><p class='meta'></p>
+<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Reference</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
+</div></div>
+<h2>Measured</h2>
+<table>
+<thead><tr><th>Method</th><th>Camera rotation error (deg) ↓</th><th>Subject movement error, offset removed (px) ↓</th><th>Subject position error (px) ↓</th></tr></thead>
+<tbody>
+<tr><td>No guidance (CogVideoX)</td><td>2.64</td><td>36.85</td><td>82.60</td></tr>
+<tr><td>DiTFlow (CogVideoX)</td><td>1.60</td><td>11.61</td><td><b>65.45</b></td></tr>
+<tr><td>No guidance (Wan 2.1 I2V)</td><td>4.67</td><td>14.44</td><td>83.79</td></tr>
+<tr><td>Ours (Wan 2.1 I2V + guidance)</td><td><b>0.54</b></td><td><b>9.96</b></td><td>107.66</td></tr>
+</tbody>
+<caption>Medians over 4 clip–subject pairs from 3 source clips, seeds 0 and 1, scored on the same source window per pair. Bold: column best. The absolute position differs for ours because the subject is placed in a synthesised scene, not at the reference&#x27;s pixel position.</caption>
+</table>
+<h2>Limitations</h2>
+<p class='lim'>How the subject moves its own body is not transferred yet: a walking person keeps the model&#x27;s gait, and a rigid object can be drawn twice. Water inside the guided region can freeze unless excluded from the mask. A reference whose camera fails our checks is refused rather than guessed (the coastal road clip above).</p>
+<p class='foot'>Generated from the batch export by scripts/make_results_page.py. John Zeng — supervisor: Dr Jing Zhang.</p>
+</main></body></html>
