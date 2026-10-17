@@ -21,50 +21,62 @@ th{color:var(--mut);font-weight:600}caption,.cap{caption-side:bottom;text-align:
 <h2>Results</h2>
 <p class='cap'>Each row is one reference clip and one target. Seed 0 where available, otherwise the seed named on the tile. Videos loop; the reference shows the first 21 frames of the window all methods were scored on.</p>
 <div class='pair'><h3>a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot</h3><p class='meta'>prompt: “a man in a grey jacket and dark trousers walking, on a rocky riverbank, side profile, moving right to left, wide shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000265.2.005_human_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_human_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_human_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_smm.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_human_moft.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_human_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_human_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <div class='pair'><h3>a red car driving, on open scrubland, side profile, moving right to left, medium shot</h3><p class='meta'>prompt: “a red car driving, on open scrubland, side profile, moving right to left, medium shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000265.2.005_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_smm.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.005_vehicle_moft.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><video src='videos/000000000265.2.005_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <div class='pair'><h3>a red car driving, on a desert highway, side profile, moving right to left, medium shot</h3><p class='meta'>prompt: “a red car driving, on a desert highway, side profile, moving right to left, medium shot” · source frames 47..79; generated frame k = source frame 47 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000265.2.003_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000265.2.003_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.003_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_smm.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000265.2.003_vehicle_moft.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000265.2.003_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><video src='videos/000000000265.2.003_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <div class='pair'><h3>a red car driving, on a desert highway, front three-quarter view, approaching the camera, medium shot</h3><p class='meta'>prompt: “a red car driving, on a desert highway, front three-quarter view, approaching the camera, medium shot” · source frames 47..79; generated frame k = source frame 47 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000404.1.004_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000404.1.004_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000404.1.004_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_smm.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000404.1.004_vehicle_moft.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000404.1.004_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><video src='videos/000000000404.1.004_vehicle_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <div class='pair'><h3>a man in a grey jacket and dark trousers walking, in a misty pine forest, rear three-quarter view, moving away from the camera, medium-wide shot</h3><p class='meta'>prompt: “a man in a grey jacket and dark trousers walking, in a misty pine forest, rear three-quarter view, moving away from the camera, medium-wide shot” · source frames 0..32; generated frame k = source frame 0 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000370.1.008_human_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000370.1.008_human_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000370.1.008_human_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000370.1.008_human_smm.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><video src='videos/000000000370.1.008_human_moft.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000370.1.008_human_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><video src='videos/000000000370.1.008_human_ours.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
 <div class='pair'><h3>a red car driving, on a coastal cliff road, rear three-quarter view, moving away from the camera, medium-wide shot (flagged: camera failed the gate; no guided run) <span class=flag>flagged</span></h3><p class='meta'>prompt: “a red car driving, on a coastal cliff road, rear three-quarter view, moving away from the camera, medium-wide shot” · source frames 4..36; generated frame k = source frame 4 + k</p>
-<div class='grid' style='grid-template-columns:repeat(5,1fr)'>
+<div class='grid' style='grid-template-columns:repeat(7,1fr)'>
 <div class='cell'><video src='videos/000000000035.1.003_vehicle_reference.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>Reference</p></div>
 <div class='cell'><video src='videos/000000000035.1.003_vehicle_cogvideox.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000035.1.003_vehicle_ditflow.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>DiTFlow (CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>SMM (re-impl., CogVideoX)</p></div>
+<div class='cell'><div class='na'>n/a</div><p class='lab'>MOFT (re-impl., CogVideoX)</p></div>
 <div class='cell'><video src='videos/000000000035.1.003_vehicle_wan_a0.mp4' muted loop playsinline autoplay preload='metadata'></video><p class='lab'>No guidance (Wan 2.1 I2V)</p></div>
 <div class='cell'><div class='na'>n/a</div><p class='lab'>Ours (Wan 2.1 I2V + guidance)</p></div>
 </div></div>
@@ -72,12 +84,14 @@ th{color:var(--mut);font-weight:600}caption,.cap{caption-side:bottom;text-align:
 <table>
 <thead><tr><th>Method</th><th>Camera rotation error (deg) ↓</th><th>Subject movement error, offset removed (px) ↓</th><th>Subject position error (px) ↓</th></tr></thead>
 <tbody>
-<tr><td>No guidance (CogVideoX)</td><td>2.64</td><td>36.85</td><td>82.60</td></tr>
-<tr><td>DiTFlow (CogVideoX)</td><td>1.60</td><td>11.61</td><td><b>65.45</b></td></tr>
-<tr><td>No guidance (Wan 2.1 I2V)</td><td>4.67</td><td>14.44</td><td>83.79</td></tr>
-<tr><td>Ours (Wan 2.1 I2V + guidance)</td><td><b>0.54</b></td><td><b>9.96</b></td><td>107.66</td></tr>
+<tr><td>No guidance (CogVideoX)</td><td>2.36</td><td>20.69</td><td>86.16</td></tr>
+<tr><td>DiTFlow (CogVideoX)</td><td>1.08</td><td><b>8.47</b></td><td>63.69</td></tr>
+<tr><td>SMM (re-impl., CogVideoX)</td><td>0.90</td><td>12.86</td><td>58.55</td></tr>
+<tr><td>MOFT (re-impl., CogVideoX)</td><td>1.12</td><td>19.19</td><td><b>55.22</b></td></tr>
+<tr><td>No guidance (Wan 2.1 I2V)</td><td>5.37</td><td>34.19</td><td>92.46</td></tr>
+<tr><td>Ours (Wan 2.1 I2V + guidance)</td><td><b>0.46</b></td><td>17.28</td><td>107.49</td></tr>
 </tbody>
-<caption>Medians over 4 clip–subject pairs from 3 source clips, seeds 0 and 1, scored on the same source window per pair. Bold: column best. The absolute position differs for ours because the subject is placed in a synthesised scene, not at the reference&#x27;s pixel position.</caption>
+<caption>Medians over the 5 gated pairs (3 source clips), seed 0 for every method, first 21 frames of each pair&#x27;s window; SMM and Wan no-guidance over 4 pairs (one video each missing at scoring time). Bold: column best. SMM and MOFT are the DiTFlow repository&#x27;s re-implementations on CogVideoX, comparable to DiTFlow and to the CogVideoX no-guidance row, not to the published SMM and MOFT. The absolute position differs for ours because the subject is placed in a synthesised scene, not at the reference&#x27;s pixel position.</caption>
 </table>
 <h2>Limitations</h2>
 <p class='lim'>How the subject moves its own body is not transferred yet: a walking person keeps the model&#x27;s gait, and a rigid object can be drawn twice. Water inside the guided region can freeze unless excluded from the mask. A reference whose camera fails our checks is refused rather than guessed (the coastal road clip above).</p>
