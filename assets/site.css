@@ -94,6 +94,7 @@ figure img { width: 100%; height: auto; display: block; }
 .cell .na { display: flex; align-items: center; justify-content: center; color: var(--cream-faint); font: 400 0.75rem var(--face-mono); letter-spacing: 0.2em; }
 .cell .lab { margin: 0.4rem 0 0; font: 500 0.6875rem/1.4 var(--face-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-dim); }
 .cell .sub { margin: 0.1rem 0 0; }
+.label.others { margin: 1rem 0 0.5rem; color: var(--cream-faint); }
 .nums { margin: 0.9rem 0 0.2rem; font-family: var(--face-mono); font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.3rem 2rem; }
 .num b { font-weight: 500; }
 .win { color: var(--gold-bright); } .loss { color: var(--crimson); }
